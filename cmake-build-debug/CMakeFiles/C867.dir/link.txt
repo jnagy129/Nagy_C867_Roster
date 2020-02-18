@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/C867.dir/roster.cpp.o CMakeFiles/C867.dir/student.cpp.o CMakeFiles/C867.dir/securityStudent.cpp.o CMakeFiles/C867.dir/softwareStudent.cpp.o CMakeFiles/C867.dir/networkStudent.cpp.o  -o C867 
