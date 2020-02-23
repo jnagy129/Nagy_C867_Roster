@@ -4,8 +4,8 @@
 
 #include "networkStudent.h"
 
-inline Degree NetworkStudent::getDegreeProgram() {
-    return degreeType;
+Degree NetworkStudent::getDegreeProgram()
+{
+    return NETWORKING;
 }
-
 

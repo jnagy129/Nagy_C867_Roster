@@ -1,216 +1,216 @@
-#include <iostream>
-#include <string>
-#include <sstream>
 #include "roster.h"
-#include "degree.h"
-#include "securityStudent.h"
 #include "networkStudent.h"
 #include "softwareStudent.h"
+#include "securityStudent.h"
 #include "student.h"
+#include <iostream>
+#include "degree.h"
 
 using namespace std;
 
-//data to pass into program
-string const studentData[] =  {
-        "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
-        "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
-        "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
-        "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
-        "A5,Joshua,Nagy,jnagy9@wgu.edu,28,50,58,40,SOFTWARE"
-};
+/////////////////////////        Functions      ////////////////////////
 
-string delimiter = ",";
 
-//Function to remove students
-void Roster::remove(string studentID) {
-    cout << "Removing Student No.: " << studentID << flush;
-    for (int i = 0; i < size; ++i) {
+////no args constructor
+Roster::Roster() {
+
+}
+
+////destuctor
+Roster::~Roster() {
+    for (int i = 0; i < size; i++) {
         if (classRosterArray[i] == nullptr) {
-            cout << "I cannot find that student, please try again" << endl;
-            break;
-        } else if (studentID == classRosterArray[i]->getStudentID()) {
-            classRosterArray[i] = nullptr;
-            cout << "Removal Successful!" << endl;
+            delete classRosterArray[i];
         }
     }
-};
+}
 
-////Function to add students to roster
-//void Roster::add(string studentID, string firstName, string lastName, string email, int age, int courseLength1,
-//                 int courseLength2, int courseLength3, Degree degree) {
-//    int courseLength[] = {courseLength1, courseLength2, courseLength3};
-//    Student* student = nullptr;
-//
-//    switch (degree) {
-//        case NETWORKING:
-//            student = new networkStudent(studentID, firstName, lastName, email, age, courseLength, degree);
-//            break;
-//        case SECURITY:
-//            student = new securityStudent(studentID, firstName, lastName, email, age, courseLength, degree);
-//            break;
-//        case SOFTWARE:
-//            student = new softwareStudent(studentID, firstName, lastName, email, age, courseLength, degree);
-//            break;
-//    }
-//
-//    for (int i = 0; i < amtStudents; ++i) {
-//        if (classRosterArray[i] == nullptr) {
-//            classRosterArray[i] = student;
-//            break;
-//        }
-//    }
-//}
 
-//Updating the classRosterArray
-
-void Roster::add(string studentID, string firstName, string lastName,
-                string email, int age, int courseLength1, int courseLength2, int courseLength3, Degree degreeType) {
-    int toComplete[] = {courseLength1, courseLength2, courseLength3};
+////function to add student to classRosterArray and cat by degree subtype
+void Roster::add(string id, string firstName, string lastName, string email, int age, int days1, int days2, int days3,
+                 int degree) {
+    int days[] = {days1, days2, days3};
     Student *student = nullptr;
 
-    switch (degreeType) {
+    switch (degree) {
         case SOFTWARE:
-            student = new SoftwareStudent(studentID, firstName, lastName, email, age, toComplete);
+            student = new SoftwareStudent(id, firstName, lastName, email, age, days);
             break;
         case SECURITY:
-            student = new SecurityStudent(studentID, firstName, lastName, email, age, toComplete);
+            student = new SecurityStudent(id, firstName, lastName, email, age, days);
             break;
         case NETWORKING:
-            student = new NetworkStudent(studentID, firstName, lastName, email, age, toComplete);
+            student = new NetworkStudent(id, firstName, lastName, email, age, days);
             break;
         default:
-            cout << "ERROR: Could not create user." << endl;
+            cout << "You must declare a major" << endl;
             break;
     }
+
+    for (int i = 0; i < size; i++) {
+        if (classRosterArray[i] == nullptr) {
+            classRosterArray[i] = student;
+            break;
+        }
+    }
 }
 
 
+////function to remove student
+void Roster::remove(string id) {
+    bool found = false;
+    for (int i = 0; i < size; i++) {
+        if (classRosterArray[i] != nullptr) {
+            if (classRosterArray[i]->getStudentID() == id) {
+                cout << "Please wait, removing student..." << endl;
+                delete classRosterArray[i];
+                classRosterArray[i] = nullptr;
+                found = true;
+                cout << id << " removed successfully." << endl;
+                break;
+            }
+        }
+    }
+    if (found)
+        cout << "Sorry, " << id << " does not exist..." << endl;
+    return;
+}
 
-//Function to print all students
+
+////Function to Print All
 void Roster::printAll() {
-    cout << "Displaying roster:" << '\n';
-    cout << endl;
     for (int i = 0; i < size; i++) {
-        (*classRosterArray[i]).print();
-    }
-    cout << '\n';
-}
-
-////Function to print average days
-//void Roster::printAvgDaysInCourse(string studentID) {
-//    for (int i = 0; i < amtStudents; ++i) {
-//        if (studentID == *classRosterArray[i]->getStudentID()) {
-//            const int *days = *classRosterArray[i]->getCourseLength();
-//            int average = ((days[0] + days[1] + days[2]) / 3);
-//            cout << studentID << ":\t" << average << " average days" << endl;
-//
-//        }
-//    }
-//};
-
-void Roster::printDaysInCourse(string studentID) {
-    for (int i = 0; i < size; i++) {
-        if (classRosterArray[i]->getStudentID() == studentID) {
-            int avg = 0;
-            avg = ((*classRosterArray[i]).getCourseLength()[0] + (*classRosterArray[i]).getCourseLength()[1]
-                   + (*classRosterArray[i]).getCourseLength()[2]) / 3;
-            cout << "The average days it took the student with studentID: " << studentID << " to finish 3 courses: " << avg << '\n';
+        if (classRosterArray[i] != nullptr) {
+            classRosterArray[i]->print();
         }
     }
-    cout << '\n';
+
+}
+
+////function to Print Average Days of courses
+void Roster::printDaysInCourse() {
+    for (int i = 0; i < size; i++) {
+        if (classRosterArray[i] != nullptr) //not null
+        {
+            {
+                int *days = classRosterArray[i]->getDays();
+                int total = 0;
+                for (int j = 0; j < 3; j++) {
+                    total += *(days + j);
+                }
+                cout << classRosterArray[i]->getStudentID() << " has an average of " << (total / 3) << " days left."
+                     << endl;
+            }
+        }
+    }
 }
 
 
-//Function for invalid email address finding
+////Printing invalid emails based on @, '.', and spaces....
 void Roster::printInvalidEmails() {
+    cout << "INVALID EMAILS: " << endl;
     for (int i = 0; i < size; i++) {
-        bool validEmail = true;
-        const string studentEmail = classRosterArray[i]->getEmail();
-        if (studentEmail.find("@") == string::npos) {
-            validEmail = false;
-        }
-        if (studentEmail.find(" . ") == string::npos) {
-            validEmail = false;
-        }
-        if (studentEmail.find(" ") != string::npos) {
-            validEmail = false;
-        }
-        if (validEmail != true) {
-            cout << studentEmail << " is an invalid email address" << endl;
+        string checkEmail = this->classRosterArray[i]->getEmailAddress();
+        if (checkEmail.find(' ', 0) != string::npos) {
+            cout << checkEmail << "\t Spaces are not permitted" << endl;
+        } else if (checkEmail.find('.', 0) == string::npos) {
+            cout << checkEmail << "\t You must have a period" << endl;
+        } else if (checkEmail.find('@', 0) == string::npos) {
+            cout << checkEmail << "\t You must have an '@' symbol" << endl;
         }
     }
 }
 
-//Function to print by degree
-void Roster::printByDegreeProgram(Degree degree) {
-    for (int i = 0; i < size; ++i) {
-        Student student = *classRosterArray[i];
-        if (student.getDegreeProgram() == degree) {
-            student.print();
+
+////printing by degree -> instructions cite softwware
+void Roster::printByDegreeProgram(int degree) {
+    for (int i = 0; i < size; i++) {
+        if (classRosterArray[i] != nullptr) {
+            if (classRosterArray[i]->getDegreeProgram() == degree) {
+                classRosterArray[i]->print();
+            }
         }
     }
-};
 
-//destructor
-Roster::~Roster() {
 }
 
+/////////////////////////       Main Program       ////////////////////////
 
 int main() {
+    ////DATA TO PASS INTO PROGRAM
+    const string studentData[] =
+            {
+                    "A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
+                    "A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
+                    "A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
+                    "A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
+                    "A5,Joshua,Nagy,jnagy9@wgu.edu,28,22,58,40,SOFTWARE"
+            };
 
-    Roster classRoster;
-    Degree degree;
+    //creates obj , to use in parsing
+    string delimiter = ",";
 
+    //creates obj classRoster of empty Roster class type
+    Roster classRoster = Roster();
 
-    //-----------intro-------------
-    do {
-        cout << '\n' << "Press Enter to continue...";
-    } while (cin.get() != '\n');
-
-    cout << "\n--------Scripting and Programming - Applications - C867-----------------" << endl;
-
-    do {
-        cout << '\n' << "Press Enter to continue...";
-    } while (cin.get() != '\n');
-
-    cout << "\n----------Written in C++ by Joshua Nagy - Student ID: 000989389-----------------" << endl;
-
-    do {
-        cout << '\n' << "Press Enter to continue...";
-    } while (cin.get() != '\n');
-
-
-     // adding each student to the classRoster
+////Parsing DATA and populating classRosterArray
     for (int i = 0; i < 5; i++) {
-        stringstream sInfo(studentData[i]);
+        size_t lhs = 0;
+        size_t rhs = 0;
+        string sub;
+        string studentTemp[9];
+        int j = 0;
+        Degree degree;
 
-        vector<string> result;
+        while ((rhs = studentData[i].find(delimiter, lhs)) !=
+               string::npos) //right hand size = dist lhs and delimiter comma
+        {
+            sub = studentData[i].substr(lhs, rhs - lhs);
+            studentTemp[j] = sub;
+            j++;
+            lhs = rhs + 1;
+        }
 
-        while (sInfo.good()) {
-            string substr;
-            getline(sInfo, substr, ',');
-            result.push_back(substr);
-        }
-        if (result[8] == "SECURITY") {
-            degree = Degree::SECURITY;
-        }
-        if (result[8] == "SOFTWARE") {
-            degree = Degree::SOFTWARE;
-        }
-        if (result[8] == "NETWORKING") {
-            degree = Degree::NETWORKING;
-        }
-        classRoster.add(result[0], result[1], result[2], result[3], stoi(result[4]), stoi(result[5]),
-                        stoi(result[6]), stoi(result[7]), degree);
+        studentTemp[8] = studentData[i].substr(lhs, studentData[i].length() - 1);
+
+        if (studentTemp[8] == "SOFTWARE")
+            degree = SOFTWARE;
+        else if (studentTemp[8] == "NETWORK")
+            degree = NETWORKING;
+        else if (studentTemp[8] == "SECURITY")
+            degree = SECURITY;
+
+        //stoi -> string to integer
+        classRoster.add(studentTemp[0], studentTemp[1], studentTemp[2], studentTemp[3], stoi(studentTemp[4]),
+                        stoi(studentTemp[5]), stoi(studentTemp[6]), stoi(studentTemp[7]), degree);
     }
 
+    ////personal info
+    cout << "***************************************************************" << endl;
+    cout << "******  WGU C867: Scripting and Programming Applications  *****" << endl;
+    cout << "********  Written in C++  *************************************" << endl;
+    cout << "********  By: Joshua NAGY\t Student ID No.: 000989389  ********" << endl;
+    cout << "***************************************************************" << endl;
+
+////Print All
     classRoster.printAll();
+    cout << "***************************************************************" << endl;
     classRoster.printInvalidEmails();
-    classRoster.printDaysInCourse("A3");
+    cout << "***************************************************************" << endl;
+
+    classRoster.printDaysInCourse();
+    cout << "***************************************************************" << endl;
+
     classRoster.printByDegreeProgram(SOFTWARE);
+    cout << "***************************************************************" << endl;
+
     classRoster.remove("A3");
+    cout << "***************************************************************" << endl;
+
     classRoster.remove("A3");
+
     classRoster.~Roster();
+
 
     return 0;
 }

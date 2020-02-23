@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/joshuanagy/CLionProjects/C867
+CMAKE_SOURCE_DIR = "/Users/joshuanagy/CLionProjects/test c867"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/joshuanagy/CLionProjects/C867/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joshuanagy/CLionProjects/C867/cmake-build-debug/CMakeFiles /Users/joshuanagy/CLionProjects/C867/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug/CMakeFiles" "/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/joshuanagy/CLionProjects/C867/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named C867
+# Target rules for targets named test_c867
 
 # Build rule for target.
-C867: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 C867
-.PHONY : C867
+test_c867: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_c867
+.PHONY : test_c867
 
 # fast build rule for target.
-C867/fast:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/build
-.PHONY : C867/fast
+test_c867/fast:
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/build
+.PHONY : test_c867/fast
 
 networkStudent.o: networkStudent.cpp.o
 
@@ -129,7 +129,7 @@ networkStudent.o: networkStudent.cpp.o
 
 # target to build an object file
 networkStudent.cpp.o:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/networkStudent.cpp.o
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/networkStudent.cpp.o
 .PHONY : networkStudent.cpp.o
 
 networkStudent.i: networkStudent.cpp.i
@@ -138,7 +138,7 @@ networkStudent.i: networkStudent.cpp.i
 
 # target to preprocess a source file
 networkStudent.cpp.i:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/networkStudent.cpp.i
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/networkStudent.cpp.i
 .PHONY : networkStudent.cpp.i
 
 networkStudent.s: networkStudent.cpp.s
@@ -147,7 +147,7 @@ networkStudent.s: networkStudent.cpp.s
 
 # target to generate assembly for a file
 networkStudent.cpp.s:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/networkStudent.cpp.s
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/networkStudent.cpp.s
 .PHONY : networkStudent.cpp.s
 
 roster.o: roster.cpp.o
@@ -156,7 +156,7 @@ roster.o: roster.cpp.o
 
 # target to build an object file
 roster.cpp.o:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/roster.cpp.o
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/roster.cpp.o
 .PHONY : roster.cpp.o
 
 roster.i: roster.cpp.i
@@ -165,7 +165,7 @@ roster.i: roster.cpp.i
 
 # target to preprocess a source file
 roster.cpp.i:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/roster.cpp.i
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/roster.cpp.i
 .PHONY : roster.cpp.i
 
 roster.s: roster.cpp.s
@@ -174,7 +174,7 @@ roster.s: roster.cpp.s
 
 # target to generate assembly for a file
 roster.cpp.s:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/roster.cpp.s
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/roster.cpp.s
 .PHONY : roster.cpp.s
 
 securityStudent.o: securityStudent.cpp.o
@@ -183,7 +183,7 @@ securityStudent.o: securityStudent.cpp.o
 
 # target to build an object file
 securityStudent.cpp.o:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/securityStudent.cpp.o
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/securityStudent.cpp.o
 .PHONY : securityStudent.cpp.o
 
 securityStudent.i: securityStudent.cpp.i
@@ -192,7 +192,7 @@ securityStudent.i: securityStudent.cpp.i
 
 # target to preprocess a source file
 securityStudent.cpp.i:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/securityStudent.cpp.i
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/securityStudent.cpp.i
 .PHONY : securityStudent.cpp.i
 
 securityStudent.s: securityStudent.cpp.s
@@ -201,7 +201,7 @@ securityStudent.s: securityStudent.cpp.s
 
 # target to generate assembly for a file
 securityStudent.cpp.s:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/securityStudent.cpp.s
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/securityStudent.cpp.s
 .PHONY : securityStudent.cpp.s
 
 softwareStudent.o: softwareStudent.cpp.o
@@ -210,7 +210,7 @@ softwareStudent.o: softwareStudent.cpp.o
 
 # target to build an object file
 softwareStudent.cpp.o:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/softwareStudent.cpp.o
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/softwareStudent.cpp.o
 .PHONY : softwareStudent.cpp.o
 
 softwareStudent.i: softwareStudent.cpp.i
@@ -219,7 +219,7 @@ softwareStudent.i: softwareStudent.cpp.i
 
 # target to preprocess a source file
 softwareStudent.cpp.i:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/softwareStudent.cpp.i
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/softwareStudent.cpp.i
 .PHONY : softwareStudent.cpp.i
 
 softwareStudent.s: softwareStudent.cpp.s
@@ -228,7 +228,7 @@ softwareStudent.s: softwareStudent.cpp.s
 
 # target to generate assembly for a file
 softwareStudent.cpp.s:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/softwareStudent.cpp.s
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/softwareStudent.cpp.s
 .PHONY : softwareStudent.cpp.s
 
 student.o: student.cpp.o
@@ -237,7 +237,7 @@ student.o: student.cpp.o
 
 # target to build an object file
 student.cpp.o:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/student.cpp.o
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/student.cpp.o
 .PHONY : student.cpp.o
 
 student.i: student.cpp.i
@@ -246,7 +246,7 @@ student.i: student.cpp.i
 
 # target to preprocess a source file
 student.cpp.i:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/student.cpp.i
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/student.cpp.i
 .PHONY : student.cpp.i
 
 student.s: student.cpp.s
@@ -255,7 +255,7 @@ student.s: student.cpp.s
 
 # target to generate assembly for a file
 student.cpp.s:
-	$(MAKE) -f CMakeFiles/C867.dir/build.make CMakeFiles/C867.dir/student.cpp.s
+	$(MAKE) -f CMakeFiles/test_c867.dir/build.make CMakeFiles/test_c867.dir/student.cpp.s
 .PHONY : student.cpp.s
 
 # Help Target
@@ -266,7 +266,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... C867"
+	@echo "... test_c867"
 	@echo "... networkStudent.o"
 	@echo "... networkStudent.i"
 	@echo "... networkStudent.s"

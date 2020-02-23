@@ -1,3 +1,3 @@
-/Users/joshuanagy/CLionProjects/C867/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/joshuanagy/CLionProjects/C867/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/joshuanagy/CLionProjects/C867/cmake-build-debug/CMakeFiles/C867.dir
+/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/joshuanagy/CLionProjects/test c867/cmake-build-debug/CMakeFiles/test_c867.dir

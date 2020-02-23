@@ -5,16 +5,18 @@
 #ifndef C867_NETWORKSTUDENT_H
 #define C867_NETWORKSTUDENT_H
 #include "student.h"
+#include "degree.h"
 
+using namespace std;
 
-// here, networkStudent is a subclass of Student; class = child; public = parent
-class NetworkStudent: public Student {
+class NetworkStudent : public Student
+{
 public:
-    using Student::Student; //inheritance constructor
+    using Student::Student;
     Degree getDegreeProgram() override;
 
 protected:
-    Degree degreeType = NETWORKING;
+    Degree degree = NETWORKING;
 };
 
 #endif //C867_NETWORKSTUDENT_H

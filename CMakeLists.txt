@@ -1,6 +1,19 @@
 cmake_minimum_required(VERSION 3.15)
-project(C867)
+project(test_c867)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(C867 roster.cpp degree.h student.h student.cpp networkStudent.h securityStudent.h securityStudent.cpp roster.h softwareStudent.cpp softwareStudent.h networkStudent.cpp)
+include_directories(.)
+
+add_executable(test_c867
+        degree.h
+        networkStudent.cpp
+        networkStudent.h
+        roster.cpp
+        roster.h
+        securityStudent.cpp
+        securityStudent.h
+        softwareStudent.cpp
+        softwareStudent.h
+        student.cpp
+        student.h)

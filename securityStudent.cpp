@@ -1,10 +1,10 @@
 //
-// Created by Joshua Nagy on 1/27/20.
+// Created by Joshua Nagy on 2/9/20.
 //
 
 #include "securityStudent.h"
 
-inline Degree SecurityStudent::getDegreeProgram() {
-    return degreeType;
+Degree SecurityStudent::getDegreeProgram()
+{
+    return SECURITY;
 }
-

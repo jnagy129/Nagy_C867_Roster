@@ -2,117 +2,126 @@
 // Created by Joshua Nagy on 1/27/20.
 //
 
+#include "student.h"
 #include <iostream>
 #include <string>
-#include "student.h"
-#include "degree.h"
+using std::string;
 using namespace std;
 
 //------------------------------------------------constructor------------------------------------------------
     //no args constructor
-Student::Student() {
+Student::Student()
+{
     this->studentID = "";
     this->firstName = "";
     this->lastName = "";
-    this->email = "";
+    this->emailAddress = "";
     this->age = 0;
-    for (int i = 0; i < numDays; i++) {
-    this->courseLength[i] = 0;
-    }
+    for (int i = 0; i < numDays; i++) {this->days[i] = 0;}
 }
 
     //overloaded constructors
-
-Student::Student(string id, string firstName, string lastName, string email, int age, int courseLength[]) {
-    this->studentID = id;
+Student::Student(string ID, string firstName, string lastName, string emailAddress, int age, const int days[])
+{
+    this->studentID = ID;
     this->firstName = firstName;
     this->lastName = lastName;
-    this->email = email;
+    this->emailAddress = emailAddress;
     this->age = age;
-    this->courseLength = new int[3];
-    for(int i = 0; i < 3; i++) {
-        this->courseLength[i] = courseLength[i];
-    }
+    for(int i = 0; i < numDays; i++) this->days[i] = days[i];
 }
-
-//------------------------------------------------destructor------------------------------------------------
-
-Student::~Student() {}
 
 //------------------------------------------------getters------------------------------------------------
 //pass data into protected class in student.h -> ref variables there
 
-string Student::getStudentID() const {
-    return this->studentID;  //this is pointer to an object w/in student
+string Student::getStudentID()
+{
+    return studentID;  //this is pointer to an object w/in student
 }
-string Student::getFirstName() const {
-    return this->firstName;
+string Student::getFirstName()
+{
+    return firstName;
 }
-string Student::getLastName() const {
-    return this->lastName;
+string Student::getLastName()
+{
+    return lastName;
 }
-string Student::getEmail() const {
-    return this->email;
+string Student::getEmailAddress()
+{
+    return emailAddress;
 }
-int Student::getAge() const {
-    return this->age;
+int Student::getAge()
+{
+    return age;
 }
-int* Student::getCourseLength() {
-    return this->courseLength;
+int* Student::getDays()
+{
+    return days;
 }
-Degree Student::getDegreeProgram() {
-    return this->degreeType;
+Degree Student::getDegreeProgram()
+{
+    return dProgram;
 }
 
 //------------------------------------------------setters------------------------------------------------
+void Student::setStudentID(string ID)
+{
+    this->studentID = ID;
+}
+void Student::setFirstName(string firstName)
+{
+   this->firstName = firstName;
+}
+void Student::setLastName(string lastName)
+{
+   this->lastName = lastName;
+}
+void Student::setEmailAddress(string email)
+{
+    this->emailAddress = email;
+}
+void Student::setAge(int age)
+{
+    this->age = age;
+}
 
-void Student::setStudentID(string setID) {
-    studentID = setID;
-}
-void Student::setFirstName(string setFName) {
-   firstName = setFName;
-}
-void Student::setLastName(string setLName) {
-   lastName = setLName;
-}
-void Student::setEmail(string setE) {
-    email = setE;
-}
-void Student::setAge(int setA) {
-    age = setA;
-}
-
-void Student::setCourseLength(int days[]) {
-    for (int i = 0; i < numDays; ++i) {
-        this->courseLength[i] = days[i];
-    }
-}
-void Student::setDegreeType(Degree degreeType) {
-    degreeType = degreeType;
+void Student::setDays(const int days[])
+{
+    for (int i = 0; i < numDays; i++)
+        this->days[i] = days[i];
 }
 
 //------------------------------------------------virtual print------------------------------------------------
-void Student::print() {
-  cout << "\nStudent ID: " << getStudentID();
-  cout << "\nFirst Name: " << getFirstName();
-  cout << "\nLast Name: " << getLastName();
-  cout << "\nEmail: " << getEmail();
-  cout << "\nAge: " << getAge();
-cout << "\nCourse 1: " << getCourseLength()[0];
-    cout << "\tCourse 2: " << getCourseLength()[1];
-    cout << "\tCourse 3: " << getCourseLength()[2];
-  cout << "\nDegree: ";
-  if (getDegreeProgram() == Degree::SECURITY) {
-      cout << "Security" << endl;
-  } else if (getDegreeProgram() == Degree::NETWORKING) {
-      cout << "Networking" << endl;
-  } else if (getDegreeProgram() == Degree::SOFTWARE) {
-      cout << "Software" << endl;
-  } else {
-      cout << "No Major Specified" << endl;
-  }
+//  child - will call degree type
+void Student::print()
+{
+  cout << studentID << "\t";
+  cout <<  "First Name: " << firstName << "\t";
+  cout << "Last Name: " << lastName << "\t";
+  cout << "Age: " << age << "\t";
+  cout << "Days in Course(s): {" << days[0] << " , " << days[1] << " , " << days[2] << "} ";
+  cout << "\tDegree: ";
+
+    switch (getDegreeProgram())
+    {
+        case SOFTWARE:
+            cout << "SOFTWARE";
+            break;
+        case NETWORKING:
+            cout << "NETWORK";
+            break;
+        case SECURITY:
+            cout << "SECURITY";
+            break;
+        default:
+            cout << "Not Major Declared";
+            break;
+    }
+
+    cout << endl;
 }
 
-
-
-
+//------------------------------------------------destructor------------------------------------------------
+Student::~Student()
+{
+}
