@@ -21,7 +21,7 @@ protected:   //protected = accessible to subclass - degree is subclass - does de
     string lastName;
     string emailAddress;
     int age;
-    int days[numDays];   //array of # of days to complete three different courses using a pointer
+    int days[numDays]{};   //array of # of days to complete three different courses using a pointer
     Degree dProgram;       //virtual methods imply this
 
 
@@ -39,7 +39,7 @@ public: //public = visible everywhere
         string getEmailAddress();
         int getAge();
         int* getDays();   //pointer to length of courses -> 3 courses
-        virtual Degree getDegreeProgram(); //virt bc cannot instantiate student obj
+        virtual Degree getDegreeProgram(); //virtual bc cannot instantiate student obj
 
     //------------------------mutator/setter for each instance variable------------------------
 

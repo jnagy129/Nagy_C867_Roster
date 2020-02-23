@@ -5,6 +5,7 @@
 #include "student.h"
 #include <iostream>
 #include <string>
+#include <utility>
 using std::string;
 using namespace std;
 
@@ -17,16 +18,16 @@ Student::Student()
     this->lastName = "";
     this->emailAddress = "";
     this->age = 0;
-    for (int i = 0; i < numDays; i++) {this->days[i] = 0;}
+    for (int & day : this->days) {day = 0;}
 }
 
     //overloaded constructors
 Student::Student(string ID, string firstName, string lastName, string emailAddress, int age, const int days[])
 {
-    this->studentID = ID;
-    this->firstName = firstName;
-    this->lastName = lastName;
-    this->emailAddress = emailAddress;
+    this->studentID = std::move(ID);
+    this->firstName = std::move(firstName);
+    this->lastName = std::move(lastName);
+    this->emailAddress = std::move(emailAddress);
     this->age = age;
     for(int i = 0; i < numDays; i++) this->days[i] = days[i];
 }
@@ -66,19 +67,19 @@ Degree Student::getDegreeProgram()
 //------------------------------------------------setters------------------------------------------------
 void Student::setStudentID(string ID)
 {
-    this->studentID = ID;
+    this->studentID = std::move(ID);
 }
 void Student::setFirstName(string firstName)
 {
-   this->firstName = firstName;
+   this->firstName = std::move(firstName);
 }
 void Student::setLastName(string lastName)
 {
-   this->lastName = lastName;
+   this->lastName = std::move(lastName);
 }
 void Student::setEmailAddress(string email)
 {
-    this->emailAddress = email;
+    this->emailAddress = std::move(email);
 }
 void Student::setAge(int age)
 {
@@ -123,5 +124,4 @@ void Student::print()
 
 //------------------------------------------------destructor------------------------------------------------
 Student::~Student()
-{
-}
+= default;

@@ -12,11 +12,9 @@ using namespace std;
 
 
 ////no args constructor
-Roster::Roster() {
+Roster::Roster() = default;
 
-}
-
-////destuctor
+////destructor
 Roster::~Roster() {
     for (int i = 0; i < size; i++) {
         if (classRosterArray[i] == nullptr) {
@@ -27,7 +25,7 @@ Roster::~Roster() {
 
 
 ////function to add student to classRosterArray and cat by degree subtype
-void Roster::add(string id, string firstName, string lastName, string email, int age, int days1, int days2, int days3,
+void Roster::add(const string& id, const  string& firstName, const string& lastName, const string& email, int age, int days1, int days2, int days3,
                  int degree) {
     int days[] = {days1, days2, days3};
     Student *student = nullptr;
@@ -57,7 +55,7 @@ void Roster::add(string id, string firstName, string lastName, string email, int
 
 
 ////function to remove student
-void Roster::remove(string id) {
+void Roster::remove(const string& id) {
     bool found = false;
     for (int i = 0; i < size; i++) {
         if (classRosterArray[i] != nullptr) {
@@ -73,7 +71,6 @@ void Roster::remove(string id) {
     }
     if (found)
         cout << "Sorry, " << id << " does not exist..." << endl;
-    return;
 }
 
 
@@ -154,7 +151,7 @@ int main() {
     Roster classRoster = Roster();
 
 ////Parsing DATA and populating classRosterArray
-    for (int i = 0; i < 5; i++) {
+    for (const auto & i : studentData) {
         size_t lhs = 0;
         size_t rhs = 0;
         string sub;
@@ -162,16 +159,16 @@ int main() {
         int j = 0;
         Degree degree;
 
-        while ((rhs = studentData[i].find(delimiter, lhs)) !=
+        while ((rhs = i.find(delimiter, lhs)) !=
                string::npos) //right hand size = dist lhs and delimiter comma
         {
-            sub = studentData[i].substr(lhs, rhs - lhs);
+            sub = i.substr(lhs, rhs - lhs);
             studentTemp[j] = sub;
             j++;
             lhs = rhs + 1;
         }
 
-        studentTemp[8] = studentData[i].substr(lhs, studentData[i].length() - 1);
+        studentTemp[8] = i.substr(lhs, i.length() - 1);
 
         if (studentTemp[8] == "SOFTWARE")
             degree = SOFTWARE;

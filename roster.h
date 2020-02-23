@@ -19,8 +19,8 @@ private:
 public:
     Roster();
 
-    void add(string studentID, string firstName, string lastName, string email,int age, int days1, int days2, int days3, int degree);
-    void remove(string studentID);
+    void add(const  string& studentID, const  string& firstName, const string& lastName, const string& email,int age, int days1, int days2, int days3, int degree);
+    void remove(const string& studentID);
     void printAll();
     void printDaysInCourse();
     void printInvalidEmails();
